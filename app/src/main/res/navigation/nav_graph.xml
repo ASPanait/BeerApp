@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/beers">
+
+    <fragment
+        android:id="@+id/beers"
+        android:name="com.andreispanait.beers.ui.beers.BeersFragment"
+        android:label="Beers"
+        tools:layout="@layout/fragment_beers">
+        <action
+            android:id="@+id/action_beers_to_beer_details"
+            app:destination="@id/beer_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/beer_details"
+        android:name="com.andreispanait.beers.ui.beers.details.BeerDetailsFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_beer_details" >
+        <argument
+            android:name="beer"
+            app:argType="com.andreispanait.beers.database.model.Beer" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
