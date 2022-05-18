@@ -1,8 +1,11 @@
 package com.andreispanait.beers.repository
 
+import android.util.Log
 import com.andreispanait.beers.database.dao.BeerDao
 import com.andreispanait.beers.database.model.Beer
+import com.andreispanait.beers.extensions.toBeer
 import com.andreispanait.beers.network.BeersApiService
+import com.andreispanait.beers.network.model.BeerNetwork
 import com.andreispanait.beers.utils.OperationResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -29,18 +32,16 @@ class BeersRepository @Inject constructor(
     }
 
     suspend fun getBeersFromApi(): Boolean = withContext(Dispatchers.IO) {
-        val beers: List<Beer>?
+        val beersNetwork: List<BeerNetwork>?
         try {
-            beers = beersApiService.getAllBeers().body()
-            delay(10000)
+            beersNetwork = beersApiService.getAllBeers().body()
+            Log.d("BEERS_REPOSITORY", beersNetwork.toString())
         } catch (ex: UnknownHostException) {
             ex.printStackTrace()
             return@withContext false
         }
         try {
-            beers?.let {
-                beerDao.insert(it)
-            }
+            beersNetwork?.map(BeerNetwork::toBeer)?.let { beerDao.insert(it) }
         } catch (ex: Exception) {
             ex.printStackTrace()
             return@withContext false
