@@ -6,6 +6,7 @@ import androidx.room.ProvidedAutoMigrationSpec
 import androidx.room.Room
 import com.andreispanait.beers.database.BeersDatabase
 import com.andreispanait.beers.database.dao.BeerDao
+import com.andreispanait.beers.database.dao.IngredientsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,4 +31,6 @@ class DatabaseModule {
     @Provides
     fun provideBeerDao(database: BeersDatabase): BeerDao = database.beerDao()
 
+    @Provides
+    fun provideIngredientsDao( database: BeersDatabase): IngredientsDao = database.ingredientsDao()
 }

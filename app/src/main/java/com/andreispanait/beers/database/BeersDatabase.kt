@@ -6,6 +6,7 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.andreispanait.beers.BuildConfig
 import com.andreispanait.beers.database.dao.BeerDao
+import com.andreispanait.beers.database.dao.IngredientsDao
 import com.andreispanait.beers.database.model.Beer
 import com.andreispanait.beers.database.model.Hops
 import com.andreispanait.beers.database.model.Ingredients
@@ -19,5 +20,7 @@ abstract class BeersDatabase: RoomDatabase() {
 
 
     abstract fun beerDao(): BeerDao
+
+    abstract fun ingredientsDao(): IngredientsDao
 
 }

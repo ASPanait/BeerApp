@@ -12,6 +12,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.andreispanait.beers.R
+import com.andreispanait.beers.database.model.Hops
+import com.andreispanait.beers.database.model.Malt
 import com.andreispanait.beers.databinding.FragmentBeerDetailsBinding
 import com.andreispanait.beers.databinding.FragmentBeersBinding
 import com.andreispanait.beers.ui.beers.BeersAdapter
@@ -39,7 +42,18 @@ class BeerDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.image.load(args.beer.image)
+        val beer = args.beerAndIngredients.beer
+        val ingredients = args.beerAndIngredients.ingredients
+        with(binding) {
+            image.load(beer.image)
+            description.text = beer.description
+
+            val malt = ingredients.malt.map(Malt::name).joinToString()
+            val hops = ingredients.hops.map(Hops::name).joinToString()
+            this.ingredients.text =
+                getString(R.string.beer_details_ingredients, malt, hops, ingredients.yeast)
+        }
+
     }
 
     override fun onDestroyView() {

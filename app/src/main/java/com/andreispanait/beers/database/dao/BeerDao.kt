@@ -1,10 +1,8 @@
 package com.andreispanait.beers.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.andreispanait.beers.database.model.Beer
+import com.andreispanait.beers.database.model.BeerAndIngredients
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,5 +13,9 @@ interface BeerDao {
 
     @Query("SELECT * FROM Beer ORDER BY name")
     fun getAll(): Flow<List<Beer>>
+
+    @Transaction
+    @Query("SELECT * FROM Beer ORDER BY name")
+    fun getAllWithIngredients(): Flow<List<BeerAndIngredients>>
 
 }

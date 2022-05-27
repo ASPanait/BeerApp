@@ -20,8 +20,8 @@
         android:label="{title}"
         tools:layout="@layout/fragment_beer_details" >
         <argument
-            android:name="beer"
-            app:argType="com.andreispanait.beers.database.model.Beer" />
+            android:name="beerAndIngredients"
+            app:argType="com.andreispanait.beers.database.model.BeerAndIngredients" />
         <argument
             android:name="title"
             app:argType="string"

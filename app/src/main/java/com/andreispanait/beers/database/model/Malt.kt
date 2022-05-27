@@ -7,7 +7,6 @@ import kotlinx.parcelize.Parcelize
 
 
 @Parcelize
-
 data class Malt(
     val name: String,
 

@@ -12,6 +12,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.andreispanait.beers.database.model.Beer
+import com.andreispanait.beers.database.model.BeerAndIngredients
 import com.andreispanait.beers.databinding.FragmentBeersBinding
 
 import com.andreispanait.beers.utils.OperationResult
@@ -68,11 +69,11 @@ class BeersFragment : Fragment(), BeersListener {
         _binding = null
     }
 
-    override fun beerClick(beer: Beer) {
+    override fun beerClick(beerAndIngredients: BeerAndIngredients) {
         findNavController().navigate(
             BeersFragmentDirections.actionBeersToBeerDetails(
-                beer,
-                beer.name
+                beerAndIngredients,
+                beerAndIngredients.beer.name
             )
         )
     }

@@ -9,19 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.andreispanait.beers.R
 import com.andreispanait.beers.database.model.Beer
+import com.andreispanait.beers.database.model.BeerAndIngredients
 import com.andreispanait.beers.databinding.ListItemBeerBinding
 
 
 class BeersAdapter(
     private val clickListener: BeersListener
 ) :
-    ListAdapter<Beer, BeersAdapter.BeerViewHolder>(object : DiffUtil.ItemCallback<Beer>() {
-        override fun areItemsTheSame(oldItem: Beer, newItem: Beer): Boolean {
-            return oldItem.id == newItem.id
+    ListAdapter<BeerAndIngredients, BeersAdapter.BeerViewHolder>(object :
+        DiffUtil.ItemCallback<BeerAndIngredients>() {
+        override fun areItemsTheSame(
+            oldItem: BeerAndIngredients,
+            newItem: BeerAndIngredients
+        ): Boolean {
+            return oldItem.beer.id == newItem.beer.id
         }
 
-        override fun areContentsTheSame(oldItem: Beer, newItem: Beer): Boolean {
-            return oldItem.image == newItem.image && oldItem.name == newItem.name
+        override fun areContentsTheSame(
+            oldItem: BeerAndIngredients,
+            newItem: BeerAndIngredients
+        ): Boolean {
+            return oldItem.beer.image == newItem.beer.image && oldItem.beer.name == newItem.beer.name
         }
 
     }) {
@@ -40,10 +48,10 @@ class BeersAdapter(
 
     override fun onBindViewHolder(holder: BeerViewHolder, position: Int) {
         ListItemBeerBinding.bind(holder.itemView).run {
-            val beer = getItem(position)
-            root.setOnClickListener { clickListener.beerClick(beer) }
-            image.load(beer.image)
-            name.text = beer.name
+            val beerAndIngredients = getItem(position)
+            root.setOnClickListener { clickListener.beerClick(beerAndIngredients) }
+            image.load(beerAndIngredients.beer.image)
+            name.text = beerAndIngredients.beer.name
         }
     }
 
