@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_authentication"
+    app:startDestination="@id/signin">
+    <fragment
+        android:id="@+id/signin"
+        android:name="com.andreispanait.beers.ui.authentication.signin.SignInFragment"
+        android:label="SignIn"
+        tools:layout="@layout/fragment_signin">
+        <action
+            android:id="@+id/action_signin_to_signup"
+            app:destination="@id/signup" />
+
+        <action
+            android:id="@+id/action_signin_to_main"
+            app:destination="@+id/nav_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup"
+        android:name="com.andreispanait.beers.ui.authentication.signup.SignUpFragment"
+        android:label="SignUp" />
+
+
+    <include app:graph="@navigation/nav_main" />
+
+</navigation>
