@@ -15,12 +15,16 @@
 
         <action
             android:id="@+id/action_signin_to_main"
-            app:destination="@+id/nav_main" />
+            app:destination="@+id/main_activity" />
     </fragment>
     <fragment
         android:id="@+id/signup"
         android:name="com.andreispanait.beers.ui.authentication.signup.SignUpFragment"
         android:label="SignUp" />
+
+    <activity
+        android:id="@+id/main_activity"
+        android:name="com.andreispanait.beers.ui.beers.MainActivity" />
 
 
     <include app:graph="@navigation/nav_main" />
